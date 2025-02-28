@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    button{
+        justify-content: center;
+        text-align: center;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px black;
+        font-family: Arial, Helvetica, sans-serif;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <button onclick="changeBackgroundColor()">Click Me To Change!</button>
+    <script>
+        function getRandomColor(){
+            return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6,'0');
+
+        }
+        function changeBackgroundColor(){
+            const newColor = getRandomColor();
+            document.body.style.backgroundColor = newColor;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .container{
+        border: 2px solid rgb(210, 199, 199);
+        border-radius: 2px;
+        margin: 90px auto;
+        padding: 30px;
+        max-width: 30%;
+    }
+    input{
+        width: 60%;
+        padding: 10px;
+        border: 2px solid rgb(78, 73, 73);
+        border-radius: 2px;
+    }
+    button{
+        padding: 10px;
+        border: 2px solid rgb(78, 73, 73);
+        border-radius: 2px;
+    }
+    button:hover{
+        cursor: pointer;
+        color: white;
+    }
+    .add-btn{
+        background-color: green;
+    }
+    #deleteall{
+        background-color: red;
+        display: none;
+    }
+    .dltbtn{
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="container" id="todo-container">
+        <h1>TODO list</h1>
+        <input type="text" name="" id="task" placeholder="enter your task">
+        <button class="add-btn" onclick="addtask()">Add Task</button>
+        <ul id="tasklist"></ul>
+        <button id="deleteall" onclick="deleteall()">Delete All</button>
+    </div>
+
+    <script>
+        function addtask(){
+            let text=document.getElementById("task");
+            text1=text.value.trim();
+            if(text1===""){
+                alert("please enter a task");
+                return;
+            }
+
+            let tasklist=document.getElementById("tasklist");
+            //create list item
+            let li=document.createElement("li");
+            li.textContent=text1;
+
+            //create deletebutton
+            let deletebutton=document.createElement("button");
+            deletebutton.textContent="delete";
+            deletebutton.className="dltbtn";
+            deletebutton.addEventListener("click",()=>{
+                li.remove();
+                checktasklist();
+            })
+            //add button to li and that li to ul
+            li.appendChild(deletebutton);
+
+            
+            tasklist.appendChild(li);
+
+            text.value="";
+            document.getElementById("deleteall").style.display="block";
+
+        }
+        function deleteall(){
+            // let tasklist=document.getElementById("tasklist");
+            // tasklist.innerHTML="";
+            // let deleteall=document.getElementById("deleteall");
+            // deleteall.style.display="none";
+            document.getElementById("tasklist").innerHTML="";
+            document.getElementById("deleteall").style.display="none";
+        }
+        function checktasklist(){
+            if(document.getElementById("tasklist").childElementCount===0){
+                document.getElementById("deleteall").style.display="none";
+            }
+        }
+    </script>
+</body>
+</html>
